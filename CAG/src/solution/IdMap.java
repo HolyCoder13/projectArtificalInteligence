@@ -1,20 +1,19 @@
-package lib.individuals;
+package solution;
 
 import lib.individuals.base.IIndividual;
-import solution.Individual;
 import tools.FitnessFunction;
 
 import java.util.Objects;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-public class PopulationCH implements Individual {
+public class IdMap implements IIndividual {
     private String _genotype;
     private Integer _fenotype;
     private Function<Double, Double> _fitnessFunction;
 
-    protected PopulationCH(Integer day, Function<Double, Double> fitnessFunction) {
-        _fitnessFunction = fitnessFunction;
+    protected IdMap(Integer day, Function<Double, Double> FitnessFunction) {
+        _fitnessFunction = FitnessFunction;
         var result = Integer.toBinaryString(day);
         setGenotypeUpdateAll(result);
     }
@@ -36,11 +35,6 @@ public class PopulationCH implements Individual {
     }
 
     @Override
-    public boolean setGenotype(String genotype) {
-        return false;
-    }
-
-
     public boolean setGenotypeUpdateAll(String genotype) {
         if(genotype == null)
             return false;
@@ -68,31 +62,30 @@ public class PopulationCH implements Individual {
     }
 
     @Override
-    public Individual cloneIndividual() {
-        return create(this._fenotype);
+    public IIndividual cloneIndividual() {
+        return create(_fenotype, (BiFunction<Double, Double, Double>) _fitnessFunction);
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("G: ").append(_genotype)
-                .append(", F: ").append(_fenotype)
-                .append(", Fittness: ").append(getFitnessValue())
-                .append(", ID: ").append(getId());
+        builder.append("genotyp: ").append(_genotype)
+                .append("fenotyp: ").append(_fenotype)
+                .append("Fittness: ").append(getFitnessValue())
+                .append("ID: ").append(getId());
         return builder.toString();
     }
 
-    public static PopulationCH create(Integer day, BiFunction<Double, Double, Double> fitnessFunction) {
-        return new PopulationCH(day, (Function<Double, Double>) fitnessFunction);
+    public static IdMap create(Integer day, BiFunction<Double, Double, Double> fitnessFunction) {
+        return new IdMap(day, (Function<Double, Double>) fitnessFunction);
     }
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PopulationCH dayKP = (PopulationCH) o;
-        return Objects.equals(_genotype, dayKP._genotype) && Objects.equals(_fenotype, dayKP._fenotype) && Objects.equals(_fitnessFunction, dayKP._fitnessFunction);
+        IdMap idMap = (IdMap) o;
+        return Objects.equals(_genotype, idMap._genotype) && Objects.equals(_fenotype, idMap._fenotype) && Objects.equals(_fitnessFunction, dayKP._fitnessFunction);
     }
 
     @Override

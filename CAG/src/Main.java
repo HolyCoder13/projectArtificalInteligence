@@ -1,9 +1,4 @@
-import examples.DayOptimizationExample;
-import solution.Individual;
-import tools.FitnessFunction;
-import tools.Mutation;
-
-import java.util.*;
+import examples.MapPopulationOpt;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,18 +6,9 @@ public class Main {
         try {
             System.out.println("Classic genetic algorithm");
 
-            // Inicjalizacja parametrów
-            int populationSize = 100;
-            int genotypeLength = 10; // Długość genotypu dla przykładu DayOptimizationExample
-            double mutationProbability = 0.01;
 
-            // Inicjalizacja populacji
-            CAGRun cagRun = new CAGRun(populationSize, genotypeLength, mutationProbability);
-            cagRun.initializePopulation();
-
-            // Uruchomienie algorytmu genetycznego
-            int numIterations = 100;
-            cagRun.run(numIterations);
+            MapPopulationOpt optymalizacjaPopulacji = new MapPopulationOpt();
+            optymalizacjaPopulacji.run();
 
         } catch (RuntimeException ex) {
             System.out.println("Należy sprawdzić czy operator mutacji i krzyżowania został zaimplementowany!");

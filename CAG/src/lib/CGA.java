@@ -12,10 +12,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-/**
- * @author Michał Horodelski
- * @version 1.0
- */
 public class CGA implements ICGA {
     public static final Double DEFAULT_CROSSING_PROBABILITY = 0.5;
     public static final Double DEFAULT_MUTATION_PROBABILITY = 0.15;
@@ -167,12 +163,6 @@ public class CGA implements ICGA {
         return result;
     }
 
-    /**
-     * Metoda sprawdza czy 50% ( gdy ceofficient == 0.5 ) osobników z populacji ma następującą własność:
-     * | a - b | <= maxDifference
-     * gdzie a to najlepsza znaleziona wartość, b to wartość osobnika.
-     * @return true - gdy warunek stopu zachodzi, oraz false w przeciwnym razie
-     */
     @Override
     public boolean isStopConditionSatisfied() {
         int partToCheck = (int) (_populationSize * _ceofficient);

@@ -8,7 +8,4 @@ public class FitnessFunction {
 
 
 
-    public static Double populationFunction(Double x) {
-        return x*x*x - 420*x*x + 43700*x + 100000;
-    }
 }
